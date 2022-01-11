@@ -2,10 +2,16 @@
 pipeline{
    agent any
 	//agent { docker { image 'node:17.3.0'} }
-	stages{
+	environment {
+		dockerHome = tool 'hidocker'
+		mavenHome = tool 'himaven'
+		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
+	}
+	stages {
 		stage('Build') {
            steps {
-			  //sh 'node --version'
+			  sh 'mvn --version'
+			  sh 'docker version'
               echo "Build"
 			  echo "path-$path"
 			  echo "BUILD_NUMBER-$env.BUILD_NUMBER"
