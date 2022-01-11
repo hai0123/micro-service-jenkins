@@ -1,12 +1,15 @@
 //declararive
 pipeline{
-	//agent any
-	agent { docker { image 'node:17.3.0'} }
+   agent any
+	//agent { docker { image 'node:17.3.0'} }
 	stages{
 		stage('Build') {
            steps {
-			  sh 'node --version'
+			  //sh 'node --version'
               echo "Build"
+			  echo "$path"
+			  echo "BUILD_NUMBER-$env.BUILD_NUMBER"
+			  echo "BUILD_ID-$env.BUILD_ID"
 		    }
 		}
 		stage('Test') {
